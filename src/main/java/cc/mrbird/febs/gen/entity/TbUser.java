@@ -11,7 +11,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
  *  Entity
  *
  * @author LHY
- * @date 2020-04-08 14:33:47
+ * @date 2020-04-08 16:48:22
  */
 @Data
 @TableName("tb_user")
@@ -48,9 +48,9 @@ public class TbUser {
     private Integer integral;
 
     /**
-     * 
+     * 剩余积分
      */
     @TableField("sub_integral")
-    private String subIntegral;
+    private Integer subIntegral;
 
 }

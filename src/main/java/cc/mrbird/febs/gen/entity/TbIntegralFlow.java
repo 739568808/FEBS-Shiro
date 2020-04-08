@@ -12,7 +12,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
  *  Entity
  *
  * @author LHY
- * @date 2020-04-08 14:33:57
+ * @date 2020-04-08 16:48:24
  */
 @Data
 @TableName("tb_integral_flow")
@@ -37,7 +37,7 @@ public class TbIntegralFlow {
     private Byte integralType;
 
     /**
-     * 
+     * 积分
      */
     @TableField("integral")
     private Integer integral;

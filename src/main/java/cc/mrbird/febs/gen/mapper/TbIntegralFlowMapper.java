@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  *  Mapper
  *
  * @author LHY
- * @date 2020-04-08 16:48:24
+ * @date 2020-04-09 22:32:28
  */
 public interface TbIntegralFlowMapper extends BaseMapper<TbIntegralFlow> {
 

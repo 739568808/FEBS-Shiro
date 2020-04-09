@@ -12,7 +12,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
  *  Entity
  *
  * @author LHY
- * @date 2020-04-08 14:33:31
+ * @date 2020-04-09 22:17:10
  */
 @Data
 @TableName("tb_vip")
@@ -45,7 +45,8 @@ public class TbVip {
      * 升级标准
      */
     @TableField("upgrade_standard")
-    private BigDecimal upgradeStandard;
+    private Integer upgradeStandard;
+
     /**
      * 多个竖分逗号分割一位0小于1大于二表示金额三提比例
      */

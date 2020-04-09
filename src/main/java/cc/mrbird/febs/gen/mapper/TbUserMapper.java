@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  *  Mapper
  *
  * @author LHY
- * @date 2020-04-08 16:48:22
+ * @date 2020-04-09 22:17:08
  */
 public interface TbUserMapper extends BaseMapper<TbUser> {
 

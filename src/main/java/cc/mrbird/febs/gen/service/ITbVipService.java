@@ -12,7 +12,7 @@ import java.util.List;
  *  Service接口
  *
  * @author LHY
- * @date 2020-04-08 14:33:31
+ * @date 2020-04-09 22:17:10
  */
 public interface ITbVipService extends IService<TbVip> {
     /**

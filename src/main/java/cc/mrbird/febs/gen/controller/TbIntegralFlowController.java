@@ -1,4 +1,4 @@
-package cc.mrbird.febs.system.controller;
+package cc.mrbird.febs.gen.controller;
 
 import cc.mrbird.febs.common.annotation.ControllerEndpoint;
 import cc.mrbird.febs.common.utils.FebsUtil;
@@ -27,7 +27,7 @@ import java.util.Map;
  *  Controller
  *
  * @author LHY
- * @date 2020-04-08 16:48:24
+ * @date 2020-04-09 22:32:28
  */
 @Slf4j
 @Validated

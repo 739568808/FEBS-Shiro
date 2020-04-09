@@ -1,5 +1,6 @@
 package cc.mrbird.febs.gen.entity;
 
+import java.util.Date;
 
 import lombok.Data;
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -11,7 +12,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
  *  Entity
  *
  * @author LHY
- * @date 2020-04-08 16:48:22
+ * @date 2020-04-09 22:17:08
  */
 @Data
 @TableName("tb_user")
@@ -48,9 +49,39 @@ public class TbUser {
     private Integer integral;
 
     /**
-     * 剩余积分
+     * 推广积分
      */
-    @TableField("sub_integral")
-    private Integer subIntegral;
+    @TableField("expand_integral")
+    private Integer expandIntegral;
+
+    /**
+     * 活动积分免费送的
+     */
+    @TableField("active_integral")
+    private Integer activeIntegral;
+
+    /**
+     * 
+     */
+    @TableField("pid")
+    private Integer pid;
+
+    /**
+     * 
+     */
+    @TableField("real_name")
+    private String realName;
+
+    /**
+     * 
+     */
+    @TableField("zfb")
+    private String zfb;
+
+    /**
+     * 
+     */
+    @TableField("create_date")
+    private Date createDate;
 
 }

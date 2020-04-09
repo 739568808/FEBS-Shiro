@@ -20,7 +20,7 @@ import java.util.List;
  *  Service实现
  *
  * @author LHY
- * @date 2020-04-08 16:48:24
+ * @date 2020-04-09 22:32:28
  */
 @Service
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true, rollbackFor = Exception.class)
@@ -32,6 +32,12 @@ public class TbIntegralFlowServiceImpl extends ServiceImpl<TbIntegralFlowMapper,
     @Override
     public IPage<TbIntegralFlow> findTbIntegralFlows(QueryRequest request, TbIntegralFlow tbIntegralFlow) {
         LambdaQueryWrapper<TbIntegralFlow> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.setEntity(tbIntegralFlow);
+        if (null!=tbIntegralFlow.getPhone()){
+
+            queryWrapper.like(TbIntegralFlow::getPhone,tbIntegralFlow.getPhone());
+            tbIntegralFlow.setPhone(null);
+        }
         // TODO 设置查询条件
         Page<TbIntegralFlow> page = new Page<>(request.getPageNum(), request.getPageSize());
         return this.page(page, queryWrapper);

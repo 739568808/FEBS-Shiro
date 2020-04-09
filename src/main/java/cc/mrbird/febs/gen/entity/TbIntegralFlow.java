@@ -12,7 +12,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
  *  Entity
  *
  * @author LHY
- * @date 2020-04-08 16:48:24
+ * @date 2020-04-09 22:32:28
  */
 @Data
 @TableName("tb_integral_flow")
@@ -43,7 +43,7 @@ public class TbIntegralFlow {
     private Integer integral;
 
     /**
-     * 0未出来，1已处理
+     * 0未处理，1已处理
      */
     @TableField("deal")
     private Byte deal;
@@ -51,7 +51,19 @@ public class TbIntegralFlow {
     /**
      * 
      */
+    @TableField("remark")
+    private String remark;
+
+    /**
+     * 
+     */
     @TableField("create_date")
     private Date createDate;
+
+    /**
+     * 
+     */
+    @TableField("phone")
+    private Long phone;
 
 }

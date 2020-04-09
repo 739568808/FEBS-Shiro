@@ -12,7 +12,7 @@ import java.util.List;
  *  Service接口
  *
  * @author LHY
- * @date 2020-04-08 16:48:24
+ * @date 2020-04-09 22:32:28
  */
 public interface ITbIntegralFlowService extends IService<TbIntegralFlow> {
     /**

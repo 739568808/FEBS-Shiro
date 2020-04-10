@@ -46,6 +46,7 @@ public class TbIntegralFlowServiceImpl extends ServiceImpl<TbIntegralFlowMapper,
     @Override
     public List<TbIntegralFlow> findTbIntegralFlows(TbIntegralFlow tbIntegralFlow) {
 	    LambdaQueryWrapper<TbIntegralFlow> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.setEntity(tbIntegralFlow);
 		// TODO 设置查询条件
 		return this.baseMapper.selectList(queryWrapper);
     }

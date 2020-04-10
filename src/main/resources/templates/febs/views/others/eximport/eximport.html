@@ -48,7 +48,7 @@
                     tableIns.reload({page: {curr: 1}});
                     var data = res.data;
                     // 弹出导入结果
-                    febs.modal.open('导入结果', 'others/eximport/result', {
+                    .open('导入结果', 'others/eximport/result', {
                         area: $(window).width() <= 750 ? '95%' : '1000px',
                         data: data
                     });

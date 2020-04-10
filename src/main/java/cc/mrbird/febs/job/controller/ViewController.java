@@ -2,6 +2,7 @@ package cc.mrbird.febs.job.controller;
 
 import cc.mrbird.febs.common.entity.FebsConstant;
 import cc.mrbird.febs.common.utils.FebsUtil;
+import cc.mrbird.febs.gen.service.ITbUserService;
 import cc.mrbird.febs.job.entity.Job;
 import cc.mrbird.febs.job.service.IJobService;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +24,7 @@ import javax.validation.constraints.NotBlank;
 public class ViewController {
 
     private final IJobService jobService;
+    private final ITbUserService tbUserService;
 
     @GetMapping("job")
     @RequiresPermissions("job:view")
@@ -42,6 +44,13 @@ public class ViewController {
         Job job = jobService.findJob(jobId);
         model.addAttribute("job", job);
         return FebsUtil.view("job/jobUpdate");
+    }
+    @GetMapping("tbUser/updateIntegral/{id}/{type}")
+    @RequiresPermissions("tbUser:update")
+    public String jobUpdate(@PathVariable Integer id,@PathVariable String type, Model model) {
+        model.addAttribute("tbUser", tbUserService.getById(id));
+        model.addAttribute("type", type);
+        return FebsUtil.view("tbUser/updateIntegral");
     }
 
     @GetMapping("log")

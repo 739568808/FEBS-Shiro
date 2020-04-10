@@ -1,0 +1,88 @@
+<style>
+    #updateIntegral {
+        padding: 20px 25px 25px 0;
+    }
+
+    #updateIntegral .layui-form-label {
+        width: 88px;
+    }
+
+    #updateIntegral .layui-input-block {
+        margin-left: 120px;
+    }
+</style>
+<div class="layui-fluid" id="updateIntegral">
+    <form class="layui-form" action="" lay-filter="job-update-form">
+        <div class="layui-form-item febs-hide">
+            <label class="layui-form-label febs-form-item-require">id：</label>
+            <div class="layui-input-block">
+                <input type="text" name="id" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <select name="integralType" id="integralType">
+                    <option value="0">+(加上)</option>
+                    <option value="1">-(减去)</option>
+                </select>
+            </div>
+
+        </div>
+        <div class="layui-form-item">
+
+            <div class="layui-input-block">
+                <input type="text" name="integral" class="layui-input" placeholder="请输入积分">
+            </div>
+        </div>
+
+        <div class="layui-form-item febs-hide">
+            <button class="layui-btn" lay-submit="" lay-filter="job-update-form-submit" id="submit"></button>
+            <button type="reset" class="layui-btn" id="reset"></button>
+        </div>
+    </form>
+</div>
+
+<script data-th-inline="javascript">
+    layui.use(['jquery', 'febs', 'form', 'validate'], function () {
+        var $ = layui.jquery,
+            febs = layui.febs,
+            form = layui.form,
+            tbUser = [[${tbUser}]],
+            type = [[${type}]],
+            $view = $('#tbIntegralFlow-update'),
+            validate = layui.validate;
+            $searchForm = $view.find('form'),
+
+        form.verify(validate);
+        form.render();
+
+
+
+
+        initJobValue();
+
+        function initJobValue() {
+            form.val("job-update-form", {
+                // "id": flow.id,
+                // "phone": flow.phone,
+                // "integralType": flow.integralType,
+                // "integral": flow.integral,
+                // "deal": flow.deal,
+                // "remark": flow.remark,
+                "id":tbUser.id,
+                "type":type
+            });
+        }
+
+        form.on('submit(job-update-form-submit)', function (data) {
+            var addSub = $searchForm.find("select[name='integralType']").val();
+            febs.post(ctx + 'tbUser/updIntegral', data.field, function () {
+                layer.closeAll();
+                febs.alert.success('修改成功');
+                $('#febs-job').find('#query').click();
+            });
+            return false;
+        });
+
+    });
+</script>

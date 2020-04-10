@@ -82,7 +82,7 @@
             var data = obj.data,
                 layEvent = obj.event;
             if (layEvent === 'del') {
-                febs.modal.confirm('踢出用户', '确定将该用户踢出？', function () {
+                .confirm('踢出用户', '确定将该用户踢出？', function () {
                     if (data.current) {
                         $.get(ctx + 'logout', function () {
                             window.location.reload();

@@ -13,7 +13,7 @@
             <div class="layui-card">
                 <div class="layui-card-header">弹出层</div>
                 <div class="layui-card-body">
-                    <p>febs.modal.info / warn / success / error()，使用 layer.alert()
+                    <p>.info / warn / success / error()，使用 layer.alert()
                         实现，参数与官网一致。</p>
                     <div class="layui-btn-container">
                         <button class="layui-btn layui-btn-normal" id="modal-info">信息</button>
@@ -44,7 +44,7 @@
             <div class="layui-card">
                 <div class="layui-card-header">popup层</div>
                 <div class="layui-card-body">
-                    <p>使用 febs.modal.open() 打开任意网址，使用 layer.open() 实现，参数与官网一致。</p>
+                    <p>使用 .open() 打开任意网址，使用 layer.open() 实现，参数与官网一致。</p>
                     <div class="layui-btn-container">
                         <button class="layui-btn  layui-btn-primary" id="popup-out">外部网页</button>
                         <button class="layui-btn  layui-btn-primary" id="popup-inner">内部网页</button>
@@ -132,27 +132,27 @@ var url = febs.route.href;
         layui.code();
         // ------------ 弹出层 ------------------------
         $view.find('#modal-info').on('click', function () {
-            febs.modal.info('请输入标题', '请输入内容', function () {
+            .info('请输入标题', '请输入内容', function () {
                 febs.alert.info("确定按钮回调");
             });
         });
         $view.find('#modal-warn').on('click', function () {
-            febs.modal.warn('请输入标题', '请输入内容', function () {
+            .warn('请输入标题', '请输入内容', function () {
                 febs.alert.info("确定按钮回调");
             });
         });
         $view.find('#modal-success').on('click', function () {
-            febs.modal.success('请输入标题', '请输入内容', function () {
+            .success('请输入标题', '请输入内容', function () {
                 febs.alert.info("确定按钮回调");
             });
         });
         $view.find('#modal-error').on('click', function () {
-            febs.modal.error('请输入标题', '请输入内容', function () {
+            .error('请输入标题', '请输入内容', function () {
                 febs.alert.info("确定按钮回调");
             });
         });
         $view.find('#modal-confirm').on('click', function () {
-            febs.modal.confirm('请输入标题', '请输入内容', function () {
+            .confirm('请输入标题', '请输入内容', function () {
                 febs.alert.info("确定按钮回调");
             }, function () {
                 febs.alert.info("取消按钮回调");
@@ -175,7 +175,7 @@ var url = febs.route.href;
 
         // -------------------- popup ----------------------
         $view.find('#popup-out').on('click', function () {
-            febs.modal.open('百度一下，你就知道', 'https://www.baidu.com');
+            .open('百度一下，你就知道', 'https://www.baidu.com');
         });
         $view.find('#popup-inner').on('click', function () {
             febs.modal.open('内部网页', 'others/apex/radar', {

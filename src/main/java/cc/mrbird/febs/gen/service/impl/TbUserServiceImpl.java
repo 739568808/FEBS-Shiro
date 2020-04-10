@@ -1,9 +1,11 @@
 package cc.mrbird.febs.gen.service.impl;
 
 import cc.mrbird.febs.common.entity.QueryRequest;
+import cc.mrbird.febs.gen.entity.TbIntegralFlow;
 import cc.mrbird.febs.gen.entity.TbUser;
 import cc.mrbird.febs.gen.mapper.TbUserMapper;
 import cc.mrbird.febs.gen.service.ITbUserService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.annotation.Propagation;
@@ -32,6 +34,15 @@ public class TbUserServiceImpl extends ServiceImpl<TbUserMapper, TbUser> impleme
     @Override
     public IPage<TbUser> findTbUsers(QueryRequest request, TbUser tbUser) {
         LambdaQueryWrapper<TbUser> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.setEntity(tbUser);
+        if (null!=tbUser.getPhone()){
+            queryWrapper.like(TbUser::getPhone,tbUser.getPhone());
+            tbUser.setPhone(null);
+        }
+        if (!StringUtils.isEmpty(tbUser.getRealName())){
+            queryWrapper.like(TbUser::getRealName,tbUser.getRealName());
+            tbUser.setRealName(null);
+        }
         // TODO 设置查询条件
         Page<TbUser> page = new Page<>(request.getPageNum(), request.getPageSize());
         return this.page(page, queryWrapper);

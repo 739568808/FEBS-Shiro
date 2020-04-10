@@ -124,6 +124,7 @@ public class TbUserController extends BaseController {
         if (type.equals("active")){
             if (addSub.equals(0)){
                 parmaUser.setActiveIntegral(user.getActiveIntegral()+integral);
+                parmaUser.setIntegral(user.getIntegral()+integral);
             }else {
                 if (user.getActiveIntegral()<integral){
                     return new FebsResponse().code(HttpStatus.FAILED_DEPENDENCY).message("可用积分不足");
@@ -133,6 +134,7 @@ public class TbUserController extends BaseController {
         }else if (type.equals("expand")){
             if (addSub.equals(0)){
                 parmaUser.setExpandIntegral(user.getExpandIntegral()+integral);
+                parmaUser.setIntegral(user.getIntegral()+integral);
             }else {
                 if (user.getExpandIntegral()<integral){
                     return new FebsResponse().code(HttpStatus.FAILED_DEPENDENCY).message("可用积分不足");

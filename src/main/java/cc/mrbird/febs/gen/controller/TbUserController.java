@@ -104,8 +104,11 @@ public class TbUserController extends BaseController {
     @ResponseBody
     @RequiresPermissions("tbUser:update")
     @Transactional
-    public FebsResponse updIntegral(@PathVariable String type,@PathVariable Integer id,@PathVariable Integer addSub,@PathVariable Integer integral) {
-        //TODO 判断是否有未处理的流水
+    public FebsResponse updIntegral(@PathVariable String type,
+                                    @PathVariable Integer id,
+                                    @PathVariable Integer addSub,
+                                    @PathVariable Integer integral) {
+        //判断是否有未处理的流水
         //SELECT count(1) FROM tb_integral_flow WHERE id=#{id} AND integral_type=1 AND deal=0
         TbIntegralFlow paramFlow = new TbIntegralFlow();
         paramFlow.setUserId(id);

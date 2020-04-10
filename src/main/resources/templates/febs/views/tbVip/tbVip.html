@@ -1,9 +1,9 @@
-<div class="layui-fluid layui-anim febs-anim" id="febs-user" lay-title="用户管理">
+<div class="layui-fluid layui-anim febs-anim" id="febs-user" lay-title="VIP设置">
     <div class="layui-row febs-container">
         <div class="layui-col-md12">
             <div class="layui-card">
                 <div class="layui-card-body febs-table-full">
-                    <form class="layui-form layui-table-form" lay-filter="user-table-form">
+                    <!--<form class="layui-form layui-table-form" lay-filter="user-table-form">
                         <div class="layui-row">
                             <div class="layui-col-md10">
                                 <div class="layui-form-item">
@@ -68,7 +68,7 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    </form>-->
                     <table lay-filter="userTable" lay-data="{id: 'userTable'}"></table>
                 </div>
             </div>
@@ -267,15 +267,19 @@
                 id: 'userTable',
                 url: ctx + 'tbVip/list',
                 cols: [[
-                    {type: 'checkbox'},
-                    {field: 'level', title: '等级', minWidth: 100},
-                    {title: '性别', templet: '#user-sex'},
-                    {field: 'deptName', title: '部门'},
-                    {field: 'mobile', title: '手机', minWidth: 165},
-                    {field: 'email', title: '邮箱', minWidth: 180},
-                    {title: '状态', templet: '#user-status'},
-                    {field: 'createTime', title: '创建时间', minWidth: 180, sort: true},
-                    {title: '操作', toolbar: '#user-option', minWidth: 140}
+                    //{type: 'checkbox'},
+                    {field: 'level', title: '等级', width: 120},
+                    {field: 'levelName', title: '等级名称', width: 120},
+                    {field: 'reward', title: '直推奖励', width: 120},
+                    {field: 'upgradeStandard', title: '升级标准', width: 120},
+                    {field: 'teamRemuneration', title: '提成标准', minWidth: 300},
+                    {field: 'top', title: '顶级会员', width: 120,templet:function (value) {
+                            if (value.top==0){
+                                return "否";
+                            }else{
+                                return "是";
+                            }
+                        }},
                 ]]
             });
         }

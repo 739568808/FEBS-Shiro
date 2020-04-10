@@ -42,10 +42,10 @@
                                 <div class="layui-btn layui-btn-sm layui-btn-primary febs-button-green-plain table-action" id="reset">
                                     <i class="layui-icon">&#xe79b;</i>
                                 </div>
-                                <div class="layui-btn layui-btn-sm layui-btn-primary table-action action-more"
-                                     shiro:hasAnyPermissions="user:add,user:update,user:password:reset,user:export">
-                                    <i class="layui-icon">&#xe875;</i>
-                                </div>
+<!--                                <div class="layui-btn layui-btn-sm layui-btn-primary table-action action-more"-->
+<!--                                     shiro:hasAnyPermissions="user:add,user:update,user:password:reset,user:export">-->
+<!--                                    <i class="layui-icon">&#xe875;</i>-->
+<!--                                </div>-->
                             </div>
                         </div>
                     </form>
@@ -78,11 +78,8 @@
     <span shiro:lacksPermission="user:view,user:update,user:delete">
         <span class="layui-badge-dot febs-bg-orange"></span> 无权限
     </span>
-    <a lay-event="detail" shiro:hasPermission="user:view"><i
-            class="layui-icon febs-edit-area febs-green">&#xe7a5;</i></a>
-    <a lay-event="edit" shiro:hasPermission="user:update"><i
-            class="layui-icon febs-edit-area febs-blue">&#xe7a4;</i></a>
-    <a lay-event="del" shiro:hasPermission="user:delete"><i class="layui-icon febs-edit-area febs-red">&#xe7f9;</i></a>
+
+
 </script>
 <script data-th-inline="none" type="text/javascript">
     layui.use(['dropdown', 'jquery', 'laydate', 'form', 'table', 'febs', 'treeSelect'], function () {
@@ -159,7 +156,7 @@
                     var params = $.extend(getQueryParams(), {field: sortObject.field, order: sortObject.type});
                     params.pageSize = $view.find(".layui-laypage-limits option:selected").val();
                     params.pageNum = $view.find(".layui-laypage-em").next().html();
-                    febs.download(ctx + 'user/excel', params, '用户信息表.xlsx');
+                    febs.download(ctx + 'tbIntegralFlow/excel', params, '积分流水信息表.xlsx');
                 }
             },
             options: [{
@@ -189,6 +186,8 @@
             search: false
         });
 
+
+
         table.on('tool(userTable)', function (obj) {
             var data = obj.data,
                 layEvent = obj.event;
@@ -203,15 +202,25 @@
                 });
             }
             if (layEvent === 'edit') {
-                febs.modal.open('修改用户', 'system/user/update/' + data.username, {
+                febs.modal.open('修改', 'tbIntegralFlow/update/' + data.id, {
                     area: $(window).width() <= 750 ? '90%' : '50%',
                     btn: ['提交', '取消'],
                     yes: function (index, layero) {
-                        $('#user-update').find('#submit').trigger('click');
+                        $('#tbIntegralFlow-update').find('#submit').trigger('click');
                     },
                     btn2: function () {
                         layer.closeAll();
                     }
+                });
+            }
+
+            if (layEvent === "dealEvemt"){
+
+                febs.modal.confirm('积分提现处理', '处理后扣除用户'+data.integral+'积分', function () {
+                    febs.get(ctx + 'tbIntegralFlow/updateDeal/' + data.id, null, function () {
+                        febs.alert.success('成功');
+                        $query.click();
+                    });
                 });
             }
         });
@@ -232,6 +241,7 @@
             tableIns.reload({where: params, page: {curr: 1}});
         });
 
+
         $reset.on('click', function () {
             $searchForm[0].reset();
             treeSelect.revokeNode('dept');
@@ -248,6 +258,7 @@
                 url: ctx + 'tbIntegralFlow/list',
                 cols: [[
                     {type: 'checkbox'},
+                    {field: 'id', title: 'id', minWidth: 100,hidden: true},
                     {field: 'phone', title: '手机号', minWidth: 100},
                     {field: 'integralType', title: '进账/出账',minWidth: 100,templet:function (value) {
                             if (value.integralType==0){
@@ -257,15 +268,15 @@
                             }
                         }},
                     {field: 'integral', title: '积分', minWidth: 100},
-                    {field: 'deal', title: '处理状态', minWidth: 100,templet:function (value) {
+                    {field: 'remark', title: '备注', minWidth: 200},
+                    {field: 'deal', title: '处理状态', minWidth: 100,event:'dealEvemt',templet:function (value) {
                             if (value.deal==0){
-                                return "未处理";
+                                return "<a href='javascript:;' class='deal'>未处理</a>";
                             }else{
                                 return "已处理";
                             }
-                        }},
-                    {field: 'remark', title: '备注', minWidth: 200},
-                    {title: '操作', toolbar: '#user-option', minWidth: 140}
+                        }}
+                    //{title: '操作', toolbar: '#user-option', minWidth: 140}
                 ]]
             });
         }

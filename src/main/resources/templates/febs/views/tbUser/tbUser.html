@@ -204,12 +204,28 @@
 
             if (layEvent === "expandEvemt"){
 
-                // febs.modal.confirm('积分提现处理', '处理后扣除用户'+data.integral+'积分', function () {
-                //     febs.get(ctx + 'tbIntegralFlow/updateDeal/' + data.id, null, function () {
-                //         febs.alert.success('成功');
-                //         $query.click();
-                //     });
-                // });
+
+                var title = "";
+                if (data.phone!=null&&data.phone!=''){
+                    title+=data.phone+"--"
+                }
+                if (data.realName!=null&&data.realName!=''){
+                    title+=data.realName+"--"
+                }
+                title += "可用推广积分"+data.activeIntegral;
+
+                febs.modal.open(title, 'job/tbUser/updateIntegral/'+data.id+"/expand", {
+                    area: $(window).width() <= 750 ? '90%' : '50%',
+                    btn: ['提交', '取消'],
+                    yes: function (index, layero) {
+                        $('#updateIntegral').find('#submit').trigger('click');
+                    },
+                    btn2: function () {
+                        layer.closeAll();
+                    }
+                });
+
+
             }
             //活动事件
             if (layEvent === "activeEvemt"){
@@ -269,15 +285,19 @@
                 url: ctx + 'tbUser/list',
                 cols: [[
                     {type: 'checkbox'},
-                    {field: 'id', title: 'id', minWidth: 100},
-                    {field: 'phone', title: '手机号', minWidth: 100},
-                    {field: 'vipId', title: 'vip等级',minWidth: 100},
-                    {field: 'integral', title: '总积分', minWidth: 100},
-                    {field: 'expandIntegral', title: '推广积分', minWidth: 200,event:'expandEvemt'},
-                    {field: 'activeIntegral', title: '活动积分', minWidth: 200,event:'activeEvemt'},
-                    {field: 'pid', title: '上级id', minWidth: 200},
-                    {field: 'realName', title: '真实姓名', minWidth: 200},
-                    {field: 'zfb', title: '支付宝号', minWidth: 200},
+                    {field: 'id', title: 'id', width: 60},
+                    {field: 'phone', title: '手机号', width: 130},
+                    {field: 'vipId', title: 'vip等级',width: 80},
+                    {field: 'integral', title: '总积分', width: 120},
+                    {field: 'activeIntegral', title: '活动积分', width: 100,event:'activeEvemt',templet:function (value) {
+                            return "<a href='javascript:;' class='deal'>"+value.activeIntegral+"</a>";
+                        }},
+                    {field: 'expandIntegral', title: '推广积分', width: 100,event:'expandEvemt',templet:function (value) {
+                            return "<a href='javascript:;' class='deal'>"+value.expandIntegral+"</a>";
+                        }},
+                    {field: 'realName', title: '真实姓名', width: 120},
+                    {field: 'zfb', title: '支付宝号', width: 140},
+                    {field: 'pid', title: '上级id', width: 80},
                     {field: 'createDate', title: '创建日期', minWidth: 200}
 
                     //{title: '操作', toolbar: '#user-option', minWidth: 140}

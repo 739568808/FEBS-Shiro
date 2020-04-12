@@ -77,13 +77,11 @@
         form.on('submit(job-update-form-submit)', function (data) {
             var addSub = $("select[name='integralType']").val();
             var integral = $("input[name='integral']").val();
-            alert("addSub:"+addSub)
-            alert("integral:"+integral)
             if (integral==null||integral==''||integral<=0){
                 layer.msg("积分必须大于0");
                 return false;
             }
-            var url = 'tbUser/updIntegral/active/'+tbUser.id+'/'+addSub+'/'+integral
+            var url = 'tbUser/updIntegral/'+type+'/'+tbUser.id+'/'+addSub+'/'+integral
             febs.post(ctx + url, data.field, function () {
                 layer.closeAll();
                 febs.alert.success('修改成功');

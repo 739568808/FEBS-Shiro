@@ -215,7 +215,9 @@
             }
 
             if (layEvent === "dealEvemt"){
-
+                if (data.deal==1){
+                    return;
+                }
                 febs.modal.confirm('积分提现处理', '处理后扣除用户'+data.integral+'积分', function () {
                     febs.get(ctx + 'tbIntegralFlow/updateDeal/' + data.id, null, function () {
                         febs.alert.success('成功');
@@ -258,24 +260,24 @@
                 url: ctx + 'tbIntegralFlow/list',
                 cols: [[
                     {type: 'checkbox'},
-                    {field: 'id', title: 'id', minWidth: 100,hidden: true},
-                    {field: 'phone', title: '手机号', minWidth: 100},
-                    {field: 'integralType', title: '进账/出账',minWidth: 100,templet:function (value) {
+                    {field: 'id', title: 'id', width: 100,hide:true},
+                    {field: 'phone', title: '手机号', width: 130},
+                    {field: 'integralType', title: '进账/出账',width: 100,templet:function (value) {
                             if (value.integralType==0){
                                 return "进账";
                             }else{
                                 return "出账";
                             }
                         }},
-                    {field: 'integral', title: '积分', minWidth: 100},
-                    {field: 'remark', title: '备注', minWidth: 200},
-                    {field: 'deal', title: '处理状态', minWidth: 100,event:'dealEvemt',templet:function (value) {
+                    {field: 'integral', title: '积分', width: 100},
+                    {field: 'deal', title: '状态', width: 100,event:'dealEvemt',templet:function (value) {
                             if (value.deal==0){
                                 return "<a href='javascript:;' class='deal'>未处理</a>";
                             }else{
                                 return "已处理";
                             }
-                        }}
+                        }},
+                    {field: 'remark', title: '备注', minWidth: 300}
                     //{title: '操作', toolbar: '#user-option', minWidth: 140}
                 ]]
             });

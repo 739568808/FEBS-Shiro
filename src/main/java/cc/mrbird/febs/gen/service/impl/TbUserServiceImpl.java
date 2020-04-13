@@ -52,6 +52,7 @@ public class TbUserServiceImpl extends ServiceImpl<TbUserMapper, TbUser> impleme
     public List<TbUser> findTbUsers(TbUser tbUser) {
 	    LambdaQueryWrapper<TbUser> queryWrapper = new LambdaQueryWrapper<>();
 		// TODO 设置查询条件
+        queryWrapper.setEntity(tbUser);
 		return this.baseMapper.selectList(queryWrapper);
     }
 

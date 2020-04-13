@@ -84,8 +84,9 @@
             var url = 'tbUser/updIntegral/'+type+'/'+tbUser.id+'/'+addSub+'/'+integral
             febs.post(ctx + url, data.field, function () {
                 layer.closeAll();
-                febs.alert.success('修改成功');
-                $('#febs-job').find('#query').click();
+                febs.alert.success('积分修改成功');
+                $('#febs-user').find('#query').click();
+
             });
             return false;
         });

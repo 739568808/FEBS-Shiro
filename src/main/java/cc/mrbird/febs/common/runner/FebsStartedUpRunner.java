@@ -63,7 +63,7 @@ public class FebsStartedUpRunner implements ApplicationRunner {
             log.info("/ /`  / / \\ | |\\/| | |_) | |   | |_   | |  | |_  ");
             log.info("\\_\\_, \\_\\_/ |_|  | |_|   |_|__ |_|__  |_|  |_|__ ");
             log.info("                                                      ");
-            log.info("龙德在线系统启动完毕，地址：{}", url);
+            log.info("后台管理系统系统启动完毕，地址：{}", url);
 
             boolean auto = febsProperties.isAutoOpenBrowser();
             if (auto && StringUtils.equalsIgnoreCase(active, FebsConstant.DEVELOP)) {
